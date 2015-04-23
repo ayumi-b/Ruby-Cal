@@ -291,7 +291,7 @@ EOS
 
 ##before 1800 or after 3000
   def test_date_too_early
-    output = `./cal.rb 04 1776`
+    output = `./cal.rb 12 1799`
     expected = <<EOS
 I'd Cal for you, but only after 1800
 
@@ -300,7 +300,7 @@ EOS
   end
 
   def test_date_too_far_away
-    output = `./cal.rb 04 3001 `
+    output = `./cal.rb 01 3001`
     expected = <<EOS
 I'd cal for you, but between 1800 and 3000.
 
@@ -310,7 +310,7 @@ EOS
 
 ##other errors
   def test_month_invalid
-    output = `./cal.rb April 2000 `
+    output = `./cal.rb April 2000`
     expected = <<EOS
 I'd cal for you, but please enter [MM][YYYY].
 
