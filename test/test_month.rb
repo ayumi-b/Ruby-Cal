@@ -73,6 +73,23 @@ EOS
     assert_equal expected, m.days_count_in_month
   end
 
+  def test_day_count_in_march_31
+    m = Month.new(3, 2844)
+    expected = 31
+    assert_equal expected, m.days_count_in_month
+  end
 
+##Number Days in February
+  def test_day_count_in_february_29
+    m = Month.new(2, 2400)
+    expected = 29
+    assert_equal expected, m.days_count_in_month
+  end
+
+  def test_day_count_in_february_28
+    m = Month.new(2, 1805)
+    expected = 28
+    assert_equal expected, m.days_count_in_month
+  end
 
 end
