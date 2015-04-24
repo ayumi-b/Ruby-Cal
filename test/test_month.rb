@@ -79,6 +79,19 @@ EOS
     assert_equal expected, m.days_count_in_month
   end
 
+##leap year
+  def test_leap_year
+    m = Month.new(2, 2400)
+    expected = true
+    assert_equal expected, m.leap_year?
+  end
+
+  def test_leap_year
+    m = Month.new(5, 1945)
+    expected = false
+    assert_equal expected, m.leap_year?
+  end
+
 ##Number Days in February
   def test_day_count_in_february_29
     m = Month.new(2, 2400)

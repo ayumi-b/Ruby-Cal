@@ -1,5 +1,5 @@
 class Month
-  attr_reader :month, :year, :months
+  attr_accessor :month, :year
 
   def initialize(month, year)
     @month = month
@@ -29,12 +29,16 @@ EOS
   end
 
   def leap_year?
-
+    (@year % 4 == 0) || (@year % 100 == 0 && @year % 400 == 0)
   end
 
   def days_count_in_month
-    days_count = { 1 => 30, 2 => '28 or 29', 3 => 31, 4 => 30, 5 => 31, 6 => 30, 7 => 31, 8 => 31, 9 => 30, 10 => 31, 11 => 30, 12 => 31}
+    if leap_year? == true
+      days_count = { 1 => 30, 2 => 29, 3 => 31, 4 => 30, 5 => 31, 6 => 30, 7 => 31, 8 => 31, 9 => 30, 10 => 31, 11 => 30, 12 => 31}
+    else
+      days_count = { 1 => 30, 2 => 28, 3 => 31, 4 => 30, 5 => 31, 6 => 30, 7 => 31, 8 => 31, 9 => 30, 10 => 31, 11 => 30, 12 => 31}
+    end
     days_count[@month]
-end
+  end
 
 end
