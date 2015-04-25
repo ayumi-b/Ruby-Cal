@@ -1,5 +1,5 @@
 class Month
-  attr_accessor :month, :year
+  attr_accessor :month, :year, :days_count
 
   def initialize(month, year)
     @month = month
@@ -41,4 +41,11 @@ EOS
     days_count[@month]
   end
 
+  def days_print
+    counter = days_count_in_month
+    a = [*1..counter]
+    x = 0
+    (a.size % 7).times { |i| return a.slice(i*7, 7).join('  ')}
+    x += 1
+  end
 end
