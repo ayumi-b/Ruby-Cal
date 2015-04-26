@@ -1,40 +1,50 @@
 class Day
-attr_reader :month, :year
+  attr_reader :month, :year, :day
 
   def initialize(month, year)
     @month = month
     @year = year
   end
 ###########################################################
-#   ZELLER'S CONGRUENCE                                 
+#   ZELLER'S CONGRUENCE
 #  http://en.wikipedia.org/wiki/Zeller's_congruence
 #
+#  h = (q + ((13*(m+1))/5) + K + (K/4) + (J/4) + 5*J) % 7
+#where: 
 #  m = the month(3=March, 4=April.....13=January, 14=February
 #  y = year
-#
+#  q = day of month
 #  will return the first day of the month:
 #  0=Saturday, 1=Sunday...6=Friday
 ###########################################################
-  def feb_and_jan
-    if @month == 1 || @month == 2
-      m = @month + 12
-      y = @year - 1
-    else
-      m = @month + 1
-      y = @year
-    end
-  end
+  #def date_sets
+    #if month <= 2
+      #m = @month+ 12
+      #y = @year- 1
+    #else
+      #m = @month+ 1
+      #y = @year
+    #end
+  #end
 
   def day_of_week
-    m = feb_and_jan
-    day = 1
-    q = day
-    y = feb_and_jan
-    d = y / 4
+    if @month <= 2
+      @month+= 12
+      @year-= 1
+    end
+
+      m = @month += 1
+      y = @year
+      q = 1
+    #m = date_sets
+    #day = 1
+    #q = day
+    #y = date_sets
+    p = y / 4
     c = y / 100
     f = y / 400
 
-    weekday_name = (q + ((m * 26)/10).floor + y + d.floor + (6 * c).floor + f.floor) % 7
+    weekday_name = (q + ((m * 26) / 10) + y + p + (6 * c) + f) % 7
   end
 
 end
