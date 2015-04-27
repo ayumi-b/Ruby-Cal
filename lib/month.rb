@@ -1,9 +1,16 @@
+require_relative 'day.rb'
+
 class Month
-  attr_accessor :month, :year, :days_count
+  attr_accessor :month, :year, :days_count, :dates, :weekday
 
   def initialize(month, year)
     @month = month
     @year = year
+    @weekday
+  end
+
+  def day_of_week
+    @weekday = day_of_week(month, year)
   end
 
   def week_string
@@ -15,6 +22,9 @@ class Month
     name[@month]
   end
 
+  def first_day
+    Day.new(month.year).day_of_week
+  end
 
   def to_s
     <<EOS
@@ -41,11 +51,46 @@ EOS
     days_count[@month]
   end
 
-  def days_print
-    counter = days_count_in_month
-    a = [*1..counter]
-    x = 0
-    (a.size % 7).times { |i| return a.slice(i*7, 7).join('  ')}
-    x += 1
+  def day_of_week
+    if @month <= 2
+      @month+= 12
+      @year-= 1
+    end
+
+      m = @month += 1
+      y = @year
+      q = 1
+
+    p = y / 4
+    c = y / 100
+    f = y / 400
+
+    weekday = (q + ((m * 26) / 10) + y + p + (6 * c) + f) % 7
   end
+
+
+  def days_print
+    dates = ''
+    counter = days_count_in_month
+    a = (1..counter).to_a
+    empty_day = "  "
+    weekday = day_of_week.to_i
+    (weekday - 1).times do
+      a.unshift(empty_day)
+    end
+    a
+
+    a.each_slice(7) do |k|
+      dates << k.join(" ") + "\n"
+      #shovel stuff
+    #dates = "#{dates[0]} + '\n' + #{dates[1} + '\n' + #{dates[2]} + '\n' + #{dates[3]} + "\n" + dates[4] + "\n"+ dates[5]"
+    #end
+    #a.each_slice(7) {|array| dates << array.join.rstrip}
+    end
+    dates
+  end
+
+    #a.length.times { |i| a.each_slice(7) }
+
+
 end
