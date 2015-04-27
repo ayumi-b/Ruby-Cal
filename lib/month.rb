@@ -1,7 +1,7 @@
 require_relative 'day.rb'
 
 class Month
-  attr_accessor :month, :year, :days_count, :dates, :weekday
+  attr_accessor :month, :year, :days_count, :days_print, :weekday
 
   def initialize(month, year)
     @month = month
@@ -9,9 +9,9 @@ class Month
     @weekday
   end
 
-  def day_of_week
-    @weekday = day_of_week(month, year)
-  end
+  #def day_of_week
+    #@weekday = day_of_week(month, year)
+  #end
 
   def week_string
     week_string = 'Su Mo Tu We Th Fr Sa'
@@ -26,17 +26,6 @@ class Month
     Day.new(month.year).day_of_week
   end
 
-  def to_s
-    <<EOS
-    #{name} #{year}
-#{week_string}
- 1  2  3  4  5  6  7
- 8  9 10 11 12 13 14
-15 16 17 18 19 20 21
-22 23 24 25 26 27 28
-29 30 31
-EOS
-  end
 
   def leap_year?
     (@year % 4 == 0) || (@year % 100 == 0 && @year % 400 == 0)
@@ -44,9 +33,9 @@ EOS
 
   def days_count_in_month
     if leap_year?
-      days_count = { 1 => 30, 2 => 29, 3 => 31, 4 => 30, 5 => 31, 6 => 30, 7 => 31, 8 => 31, 9 => 30, 10 => 31, 11 => 30, 12 => 31}
+      days_count = { 1 => 31, 2 => 29, 3 => 31, 4 => 30, 5 => 31, 6 => 30, 7 => 31, 8 => 31, 9 => 30, 10 => 31, 11 => 30, 12 => 31}
     else
-      days_count = { 1 => 30, 2 => 28, 3 => 31, 4 => 30, 5 => 31, 6 => 30, 7 => 31, 8 => 31, 9 => 30, 10 => 31, 11 => 30, 12 => 31}
+      days_count = { 1 => 31, 2 => 28, 3 => 31, 4 => 30, 5 => 31, 6 => 30, 7 => 31, 8 => 31, 9 => 30, 10 => 31, 11 => 30, 12 => 31}
     end
     days_count[@month]
   end
@@ -66,6 +55,11 @@ EOS
     f = y / 400
 
     weekday = (q + ((m * 26) / 10) + y + p + (6 * c) + f) % 7
+    if weekday == 0
+    weekday = 7
+    else
+      weekday = weekday
+    end
   end
 
 
@@ -76,15 +70,32 @@ EOS
 
 
     empty_day = " "
+
     weekday = day_of_week.to_i
-    (weekday - 1).times do
-      a.unshift(empty_day)
+      (weekday - 1).times do
+        a.unshift(empty_day)
     end
     a
 
     a.each_slice(7) do |k|
       dates << k.map{|k| k.to_s.rjust(2)}.join(" ") + "\n"
     end
-    dates
+    line_counter = dates.lines.count
+    new_line = "\n"
+    if line_counter == 4
+      dates << new_line + new_line
+    elsif line_counter == 5
+      dates << new_line
+    elsif line_counter  == 6
+      dates
+    end
   end
+
+  def to_s
+    to_string = "#{name} #{year}".center(20).rstrip  + "\n" + "#{week_string}" + "\n" + "#{days_print}"
+  end
+
+
+
+
 end
