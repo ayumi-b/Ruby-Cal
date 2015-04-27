@@ -43,7 +43,7 @@ EOS
   end
 
   def days_count_in_month
-    if leap_year? == true
+    if leap_year?
       days_count = { 1 => 30, 2 => 29, 3 => 31, 4 => 30, 5 => 31, 6 => 30, 7 => 31, 8 => 31, 9 => 30, 10 => 31, 11 => 30, 12 => 31}
     else
       days_count = { 1 => 30, 2 => 28, 3 => 31, 4 => 30, 5 => 31, 6 => 30, 7 => 31, 8 => 31, 9 => 30, 10 => 31, 11 => 30, 12 => 31}
@@ -73,7 +73,9 @@ EOS
     dates = ''
     counter = days_count_in_month
     a = (1..counter).to_a
-    empty_day = "  "
+
+
+    empty_day = " "
     weekday = day_of_week.to_i
     (weekday - 1).times do
       a.unshift(empty_day)
@@ -81,16 +83,8 @@ EOS
     a
 
     a.each_slice(7) do |k|
-      dates << k.join(" ") + "\n"
-      #shovel stuff
-    #dates = "#{dates[0]} + '\n' + #{dates[1} + '\n' + #{dates[2]} + '\n' + #{dates[3]} + "\n" + dates[4] + "\n"+ dates[5]"
-    #end
-    #a.each_slice(7) {|array| dates << array.join.rstrip}
+      dates << k.map{|k| k.to_s.rjust(2)}.join(" ") + "\n"
     end
     dates
   end
-
-    #a.length.times { |i| a.each_slice(7) }
-
-
 end
