@@ -10,6 +10,19 @@ class TestYear < Minitest::Test
     assert_equal 2015, y.year
   end
 
+  def test_pulling_in_month_test
+    m = Month.new(2,2015)
+    assert_equal 28, m.days_count_in_month
+  end
+ 
+  def test_print_months
+    y = Year.new(2015)
+    expected = 'hello'
+    assert_equal expected, y.all_months
+  end
+
+
+
   def test_to_s_on_2012
     y = Year.new(2012)
     expected =<<EOS
@@ -50,5 +63,6 @@ Su Mo Tu We Th Fr Sa  Su Mo Tu We Th Fr Sa  Su Mo Tu We Th Fr Sa
 EOS
     assert_equal expected, y.to_s
   end
+  
 
 end
