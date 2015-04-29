@@ -1,6 +1,6 @@
 #!/usr/bin/env ruby
 
-require_relative 'helper'
+require 'helper'
 
 month = ARGV[0]
 year = ARGV[1]
