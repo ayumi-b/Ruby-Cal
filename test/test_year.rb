@@ -16,11 +16,13 @@ class TestYear < Minitest::Test
   end
 
   def test_pulling_in_single_month
+    skip
     m = Month.new(2,2015)
     assert_equal 28, m.to_y_s
   end
  
   def test_print_months
+    skip
     y = Year.new(2015)
     expected = <<EOS
                              2015
@@ -64,6 +66,7 @@ EOS
 
 
   def test_to_s_on_2012
+    skip
     y = Year.new(2012)
     expected =<<EOS
                              2012
