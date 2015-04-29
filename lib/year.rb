@@ -17,14 +17,14 @@ class Year
     all_months = ''
     months = (1..12).to_a
     months.each do |m|
-      all_months << Month.new(m, @year).to_s
+      all_months << Month.new(m, @year).to_y_s
     end
     all_months
   end
-  
+
   def to_s
     year_print = ''
-    top_line = "#{year}".center(63)
+    top_line = "#{year}".center(63) + "\n"
     next_line = all_months
     year_print << top_line + next_line
 
