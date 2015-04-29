@@ -1,4 +1,4 @@
-require_relative 'helper'
+require_relative 'helper.rb'
 require_relative '../lib/month.rb'
 require_relative '../lib/day.rb'
 
