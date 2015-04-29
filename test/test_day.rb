@@ -1,6 +1,5 @@
 require_relative 'helper'
 require_relative '../lib/day.rb'
-require 'enumerator'
 
 class TestDay < Minitest::Test
 
@@ -30,7 +29,7 @@ class TestDay < Minitest::Test
 
   def test_first_day_of_january_01_2000
     d = Day.new(1, 2000)
-    expected = 0
+    expected = 7
     assert_equal expected, d.day_of_week
   end
 
