@@ -1,4 +1,7 @@
 require_relative 'helper'
+require_relative 'month.rb'
+require_relative 'day.rb'
+
 
 class TestCalIntegration < Minitest::Unit::TestCase
 
