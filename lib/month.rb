@@ -95,7 +95,10 @@ class Month
     to_string = "#{name} #{year}".center(20).rstrip  + "\n" + "#{week_string}" + "\n" + "#{days_print}"
   end
 
-
+  def to_y_s
+    to_stringyr = "#{name}".center(20).rstrip  + "\n" + "#{week_string}" + "\n" + "#{days_print}"
+    to_stringyr.gsub("\n", " ")
+  end
 
 
 end
