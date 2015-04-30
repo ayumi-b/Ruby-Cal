@@ -23,7 +23,7 @@ class Month
   end
 
   def first_day
-    Day.new(month.year).day_of_week
+    Day.new(month,year).day_of_week
   end
 
 
@@ -82,7 +82,7 @@ class Month
     end
     line_counter = dates.lines.count
     new_line = "\n"
-    if line_counter == 6
+    if line_counter == 4
       dates << new_line + new_line
     elsif line_counter == 5
       dates << new_line
