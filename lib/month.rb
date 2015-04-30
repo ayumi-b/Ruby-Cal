@@ -14,7 +14,7 @@ class Month
   #end
 
   def week_string
-    week_string = 'Su Mo Tu We Th Fr Sa'
+    week_string = "Su Mo Tu We Th Fr Sa\n"
   end
 
   def name
@@ -28,7 +28,7 @@ class Month
 
 
   def leap_year?
-    (@year % 4 == 0) || (@year % 100 == 0 && @year % 400 == 0)
+    (@year % 4 == 0 && @year % 100 != 0) || (@year % 100 == 0 && @year % 400 == 0)
   end
 
   def days_count_in_month
@@ -82,7 +82,7 @@ class Month
     end
     line_counter = dates.lines.count
     new_line = "\n"
-    if line_counter == 4
+    if line_counter == 6
       dates << new_line + new_line
     elsif line_counter == 5
       dates << new_line
@@ -92,13 +92,14 @@ class Month
   end
 
   def to_s
-    to_string = "#{name} #{year}".center(20).rstrip  + "\n" + "#{week_string}" + "\n" + "#{days_print}"
+    to_string = "#{name} #{year}".center(20).rstrip  + "\n" + "#{week_string}" + "#{days_print}"
   end
 
-  def to_y_s
-    to_stringyr = "#{name}".center(20).rstrip  + "\n" + "#{week_string}" + "\n" + "#{days_print}"
-    to_stringyr.gsub("\n", " ")
-  end
+  #def to_y_s
+    #to_stringyr = "#{name}".center(20).rstrip  + "\n" + "#{week_string}" + "\n" + "#{days_print}"
+  #end
+
+
 
 
 end
