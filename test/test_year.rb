@@ -6,6 +6,7 @@ require_relative '../lib/year.rb'
 class TestYear < Minitest::Test
 
   def test_initializing_a_year_saves_values
+    skip
     y = Year.new(2015)
     assert_equal 2015, y.year
   end
@@ -60,13 +61,12 @@ Su Mo Tu We Th Fr Sa  Su Mo Tu We Th Fr Sa  Su Mo Tu We Th Fr Sa
 25 26 27 28 29 30 31  29 30                 27 28 29 30 31
                                            
 EOS
-    assert_equal expected, y.all_months
+    assert_equal expected, y.year_to_s
   end
 
 
 
   def test_to_s_on_2012
-    skip
     y = Year.new(2012)
     expected =<<EOS
                              2012
@@ -104,7 +104,7 @@ Su Mo Tu We Th Fr Sa  Su Mo Tu We Th Fr Sa  Su Mo Tu We Th Fr Sa
 28 29 30 31           25 26 27 28 29 30     23 24 25 26 27 28 29
                                             30 31
 EOS
-    assert_equal expected, y.to_s
+    assert_equal expected, y.year_to_s
   end
   
 

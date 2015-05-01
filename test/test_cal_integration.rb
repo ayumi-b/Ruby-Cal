@@ -1,9 +1,9 @@
-require_relative 'helper.rb'
-require_relative '../lib/month.rb'
+require_relative 'helper'
 require_relative '../lib/day.rb'
+require_relative '../lib/month.rb'
 
 
-class TestCalIntegration < Minitest::Unit::TestCase
+class TestCalIntegration < Minitest::Test
 
 
 
@@ -28,6 +28,7 @@ EOS
 ##Leap Year Stuff
 
   def test_leap_year_regular
+    skip
     output = `./cal.rb 02 1952`
     expected = <<EOS
    February 1952
@@ -43,6 +44,7 @@ EOS
   end
 
   def test_leap_year_century
+    skip
     output = `./cal.rb 02 2000`
     expected = <<EOS
    February 2000
@@ -58,6 +60,7 @@ EOS
   end
 
   def test_leap_year_400_year
+    skip
     output = `./cal.rb 02 2400`
     expected = <<EOS
    February 2400
@@ -74,6 +77,7 @@ EOS
 
 ##January
   def test_january_31
+    skip
     output = `./cal.rb 01 1945`
     expected = <<EOS
     January 1945
@@ -92,6 +96,7 @@ EOS
 
 ##February with 2 tests
   def test_february_28_days
+    skip
     output = `./cal.rb 02 1805`
     expected = <<EOS
    February 1805
@@ -107,6 +112,7 @@ EOS
   end
 
   def test_february_29_days
+    skip
     output = `./cal.rb 02 1904`
     expected = <<EOS
    February 1904
@@ -123,6 +129,7 @@ EOS
 
 ##March
   def test_march_31
+    skip
     output = `./cal.rb 03 2844`
     expected = <<EOS
      March 2844
@@ -140,6 +147,7 @@ EOS
 
 ##April
   def test_april_30
+    skip
     output = `./cal.rb 04 1863`
     expected = <<EOS
      April 1863
@@ -157,6 +165,7 @@ EOS
 
 ##May
   def test_may_31
+    skip
     output = `./cal.rb 05 2200`
     expected = <<EOS
       May 2200
@@ -174,6 +183,7 @@ EOS
 
 ##June
   def test_june_30
+    skip
     output = `./cal.rb 06 1900`
     expected = <<EOS
      June 1900
@@ -191,6 +201,7 @@ EOS
 
 ##July
   def test_july_31
+    skip
     output = `./cal.rb 07 2789`
     expected = <<EOS
      July 2789
@@ -209,6 +220,7 @@ EOS
 
 ##August
   def test_august_31
+    skip
     output = `./cal.rb 08 1993`
     expected = <<EOS
     August 1993
@@ -226,6 +238,7 @@ EOS
 
 ##September
   def test_september_30
+    skip
     output = `./cal.rb 09 2345`
     expected = <<EOS
    September 2345
@@ -243,6 +256,7 @@ EOS
 
 ##October
   def test_october_31
+    skip
     output = `./cal.rb 10 1830`
     expected = <<EOS
     October 1830
@@ -260,6 +274,7 @@ EOS
 
 ##November
   def test_november_30
+    skip
     output = `./cal.rb 11 2345`
     expected = <<EOS
    November 2345
@@ -277,6 +292,7 @@ EOS
 
 ##December
   def test_december_31
+    skip
     output = `./cal.rb 12 3000`
     expected = <<EOS
    December 3000
@@ -294,6 +310,7 @@ EOS
 
 ##before 1800 or after 3000
   def test_date_too_early
+    skip
     output = `./cal.rb 12 1799`
     expected = <<EOS
 I'd Cal for you, but only after 1800
@@ -303,6 +320,7 @@ EOS
   end
 
   def test_date_too_far_away
+    skip
     output = `./cal.rb 01 3001`
     expected = <<EOS
 I'd cal for you, but between 1800 and 3000.
@@ -313,6 +331,7 @@ EOS
 
 ##other errors
   def test_month_invalid
+    skip
     output = `./cal.rb April 2000`
     expected = <<EOS
 I'd cal for you, but please enter [MM][YYYY].
@@ -322,6 +341,7 @@ EOS
   end
 
   def test_date_invalid
+    skip
     output = `./cal.rb 2000 04`
     expected = <<EOS
 I'd cal for you, but please enter [MM][YYYY].
