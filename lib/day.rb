@@ -34,7 +34,7 @@ class Day
 
     weekday = (q + ((m * 26) / 10) + y + p + (6 * c) + f) % 7
     if weekday == 0
-    weekday = 7
+      weekday = 7
     else
       weekday = weekday
     end

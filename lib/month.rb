@@ -14,7 +14,7 @@ class Month
   #end
 
   def week_string
-    week_string = "Su Mo Tu We Th Fr Sa\n"
+    week_string = "Su Mo Tu We Th Fr Sa"
   end
 
   def name
@@ -77,27 +77,46 @@ class Month
     end
     a
 
-    a.each_slice(7) do |k|
-      dates << k.map{|k| k.to_s.rjust(2)}.join(" ") + "\n"
+    dates = a.each_slice(7).to_a
+    until dates.length == 6
+      dates << [nil]
     end
-    line_counter = dates.lines.count
-    new_line = "\n"
-    if line_counter == 4
-      dates << new_line + new_line
-    elsif line_counter == 5
-      dates << new_line
-    elsif line_counter  == 6
-      dates
-    end
+    dates
+
+
+    #a.each_slice(7) do |k|
+      #dates << k.map{|k| k.to_s.rjust(2)}.join(" ") + "\n"
+    #end
+    #line_counter = dates.lines.count
+    #new_line = "\n"
+    #if line_counter == 4
+      #dates << new_line + new_line
+    #elsif line_counter == 5
+      #dates << new_line
+    #elsif line_counter  == 6
+      #dates
+    #end
   end
+
+
 
   def to_s
-    to_string = "#{name} #{year}".center(20).rstrip  + "\n" + "#{week_string}" + "#{days_print}"
+    "#{name} #{year}".center(20).rstrip
+    "#{week_string}"
+    days_print.each do |row|
+      format_row = row.map do |box|
+        box.to_s.rjust(2)
+      end
+      format_row.join(" ").rstrip + "\n"
+    end
   end
 
-  #def to_y_s
-    #to_stringyr = "#{name}".center(20).rstrip  + "\n" + "#{week_string}" + "\n" + "#{days_print}"
-  #end
+  def to_y_s
+    to_stringyr = []
+    to_stringyr << "#{name}".center(20)
+    to_stringyr << "#{week_string}"
+    to_stringyr.concat(days_print)
+  end
 
 
 
