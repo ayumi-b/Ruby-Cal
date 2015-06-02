@@ -14,7 +14,7 @@ class Month
   #end
 
   def week_string
-    week_string = "Su Mo Tu We Th Fr Sa"
+    week_string = 'Su Mo Tu We Th Fr Sa'
   end
 
   def name
@@ -64,52 +64,60 @@ class Month
 
 
   def days_print
-    dates = ''
+    dates = ""
     counter = days_count_in_month
     a = (1..counter).to_a
 
 
-    empty_day = " "
+    empty_day = "  "
 
     weekday = day_of_week.to_i
       (weekday - 1).times do
         a.unshift(empty_day)
     end
-    a
+      a
 
-    dates = a.each_slice(7).to_a
-    until dates.length == 6
-      dates << [nil]
+    a.each_slice(7) do |k|
+      dates << k.map{|k| k.to_s.rjust(2)}.join(" ") + "\n"
     end
-    dates
-
-
-    #a.each_slice(7) do |k|
-      #dates << k.map{|k| k.to_s.rjust(2)}.join(" ") + "\n"
-    #end
-    #line_counter = dates.lines.count
-    #new_line = "\n"
-    #if line_counter == 4
-      #dates << new_line + new_line
-    #elsif line_counter == 5
-      #dates << new_line
-    #elsif line_counter  == 6
-      #dates
-    #end
+    line_counter = dates.lines.count
+    new_line = "\n"
+    if line_counter == 4
+      dates << new_line + new_line
+    elsif line_counter == 5
+      dates << new_line
+    elsif line_counter  == 6
+      dates
+    end
   end
-
-
 
   def to_s
-    "#{name} #{year}".center(20).rstrip
-    "#{week_string}"
-    days_print.each do |row|
-      format_row = row.map do |box|
-        box.to_s.rjust(2)
-      end
-      format_row.join(" ").rstrip + "\n"
-    end
+    to_string = "#{name} #{year}".center(20).rstrip  + "\n" + "#{week_string}" + "\n" + "#{days_print}"
   end
+
+
+
+    #dates = a.each_slice(7).to_a
+    #dates.each do |row|
+      #format_row = row.map do |box|
+        #box.to_s.rjust(3)
+      #end
+    #format_row.join(" ") + "\n"
+    #end
+    #until dates.length == 6
+      #dates << "\n"
+    #end
+    #dates
+  #end
+
+
+  #def to_s
+    #to_string = []
+    #to_string << "#{name} #{year}".center(20).rstrip + "\n"
+    #to_string << "#{week_string}" + "\n"
+    #to_string.concat(days_print)
+    ##format_row.join(" ").rstrip
+  #end
 
   def to_y_s
     to_stringyr = []
@@ -117,8 +125,4 @@ class Month
     to_stringyr << "#{week_string}"
     to_stringyr.concat(days_print)
   end
-
-
-
-
 end
