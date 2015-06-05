@@ -4,8 +4,8 @@ class Month
   attr_accessor :month, :year, :days_count, :days_print, :weekday
 
   def initialize(month, year)
-    @month = month
-    @year = year
+    @month = month.to_i
+    @year = year.to_i
     @weekday
   end
 
